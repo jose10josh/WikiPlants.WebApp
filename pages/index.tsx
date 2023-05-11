@@ -1,22 +1,23 @@
-import { GetStaticProps, InferGetServerSidePropsType } from 'next'
-import { Layout } from '@components/Layout'
-import { getPlantList } from '@api'
-import { PlantCollection } from '@components/PlantCollection'
-import { Authors } from '@components/Authors'
-import { Hero } from '@components/Hero'
+import { GetStaticProps, InferGetServerSidePropsType } from 'next';
+import { Layout } from '@components/Layout';
+import { getPlantList } from '@api';
+import { PlantCollection } from '@components/PlantCollection';
+import { Authors } from '@components/Authors';
+import { Hero } from '@components/Hero';
 
 type HomeProps = {
-  plants: Plant[]
-}
+  plants: Plant[];
+};
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const plants = await getPlantList({ limit: 10 })
+  const plants = await getPlantList({ limit: 10 });
   return {
     props: {
       plants,
     },
-  }
-}
+    revalidate: 5 * 60,
+  };
+};
 
 export default function Home({
   plants,
@@ -35,5 +36,5 @@ export default function Home({
         variant="square"
       />
     </Layout>
-  )
+  );
 }
