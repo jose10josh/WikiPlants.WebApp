@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { getAuthorList, QueryStatus } from '@api'
 import { Grid, Typography } from '@material-ui/core'
+import { useAuthors } from '@hooks/useAuthors'
 
 type AuthorProps = {
   className?: string
@@ -42,29 +41,4 @@ export function Authors({ className }: AuthorProps) {
       ))}
     </Grid>
   )
-}
-
-function useAuthors() {
-  const [status, setStatus] = useState<QueryStatus>('idle')
-  const [data, setData] = useState<Author[] | null>(null)
-
-  useEffect(
-    () => {
-      setStatus('loading')
-      getAuthorList({ limit: 10 })
-        .then((returnedData) => {
-          setData(returnedData)
-          setStatus('success')
-        })
-        .catch(() => setStatus('error'))
-    },
-    [
-      // Run effect once
-    ]
-  )
-
-  return {
-    status,
-    data,
-  }
 }

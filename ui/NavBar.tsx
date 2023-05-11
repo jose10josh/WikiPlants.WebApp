@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react'
 import Head from 'next/head'
-import { AppBar, Toolbar } from '@material-ui/core'
-
-import { Typography } from './Typography'
+import { AppBar, Toolbar, Typography } from '@material-ui/core'
 
 type Props = {
   title: string
