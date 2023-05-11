@@ -1,7 +1,7 @@
-import { Typography } from '@material-ui/core'
-import Link from 'next/link'
+import { Typography } from '@material-ui/core';
+import Link from 'next/link';
 
-type HeroProps = Plant & { className?: string }
+type HeroProps = Plant & { className?: string };
 
 export function Hero({ plantName, slug, image, className }: HeroProps) {
   return (
@@ -11,7 +11,7 @@ export function Hero({ plantName, slug, image, className }: HeroProps) {
           <img src={image.url} width={600} />
         </div>
         <div className="text-container absolute">
-          <Link href={`/entry/${slug}`}>
+          <Link href={`/detail/${slug}`}>
             <a title={`Go to ${plantName}`}>
               <Typography
                 variant="h1"
@@ -48,5 +48,5 @@ export function Hero({ plantName, slug, image, className }: HeroProps) {
         }
       `}</style>
     </div>
-  )
+  );
 }

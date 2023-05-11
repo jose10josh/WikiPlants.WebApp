@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core'
+import { Typography } from '@material-ui/core';
 
 export function AuthorCard({
   fullName,
@@ -21,7 +21,7 @@ export function AuthorCard({
         </Typography>
         <div className="flex">
           <a
-            href={linkedIn}
+            href="#"
             title={`Follow ${fullName} on LinkedIn`}
             target="_blank"
             className="pr-4"
@@ -29,7 +29,7 @@ export function AuthorCard({
             LI
           </a>
           <a
-            href={twitter}
+            href="#"
             title={`Follow ${fullName} on Twitter`}
             target="_blank"
             className="pr-4"
@@ -39,5 +39,5 @@ export function AuthorCard({
         </div>
       </div>
     </div>
-  )
+  );
 }

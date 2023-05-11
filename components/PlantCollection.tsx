@@ -1,12 +1,12 @@
-import Link from 'next/link'
-import { Grid, GridProps, Typography, Button } from '@material-ui/core'
-import { Excerpt } from '@components/Excerpt'
+import Link from 'next/link';
+import { Grid, GridProps, Typography, Button } from '@material-ui/core';
+import { Excerpt } from '@components/Excerpt';
 
 type PlantCollectionProps = {
-  plants: Plant[]
-  variant?: 'square' | 'vertical'
-  className?: string
-}
+  plants: Plant[];
+  variant?: 'square' | 'vertical';
+  className?: string;
+};
 
 export function PlantCollection({
   plants,
@@ -19,36 +19,36 @@ export function PlantCollection({
         <PlantEntry key={plant.id} plant={plant} variant={variant} />
       ))}
     </Grid>
-  )
+  );
 }
 
 type PlantEntryType = {
-  plant: Plant
-  variant?: 'square' | 'vertical'
-}
+  plant: Plant;
+  variant?: 'square' | 'vertical';
+};
 
 export function PlantEntry({ plant, variant = 'square' }: PlantEntryType) {
-  let gridItemProps: GridProps = { xs: 6, md: 4 }
-  let Component: (props: Plant) => JSX.Element = PlantEntrySquare
+  let gridItemProps: GridProps = { xs: 6, md: 4 };
+  let Component: (props: Plant) => JSX.Element = PlantEntrySquare;
 
   if (variant === 'vertical') {
-    Component = PlantEntryVertical
+    Component = PlantEntryVertical;
     gridItemProps = {
       xs: 12,
       sm: 6,
-    }
+    };
   }
 
   return (
     <Grid key={plant.id} role="listitem" item {...gridItemProps}>
       <Component {...plant} />
     </Grid>
-  )
+  );
 }
 
 export function PlantEntrySquare({ image, plantName, slug }: Plant) {
   return (
-    <Link href={`/entry/${slug}`}>
+    <Link href={`/detail/${slug}`}>
       <a title={`Go to ${plantName}`}>
         <div className="opacity-95 hover:opacity-100">
           <img src={image.url} width={460} />
@@ -60,7 +60,7 @@ export function PlantEntrySquare({ image, plantName, slug }: Plant) {
         </div>
       </a>
     </Link>
-  )
+  );
 }
 
 export function PlantEntryInline({
@@ -70,7 +70,7 @@ export function PlantEntryInline({
   className,
 }: Plant & { className?: string }) {
   return (
-    <Link href={`/entry/${slug}`}>
+    <Link href={`/detail/${slug}`}>
       <a title={`Go to ${plantName}`}>
         <div
           className={`opacity-95 hover:opacity-100 flex items-end ${className}`}
@@ -84,7 +84,7 @@ export function PlantEntryInline({
         </div>
       </a>
     </Link>
-  )
+  );
 }
 
 export function PlantEntryVertical({
@@ -95,7 +95,7 @@ export function PlantEntryVertical({
 }: Plant) {
   return (
     <div className="opacity-95 hover:opacity-100">
-      <Link href={`/entry/${slug}`}>
+      <Link href={`/detail/${slug}`}>
         <a title={`Go to ${plantName}`}>
           <img src={image.url} width={624} />
           <Typography variant="h2" className="break-words pt-4 px-4">
@@ -109,10 +109,10 @@ export function PlantEntryVertical({
           color="textSecondary"
           className="py-6"
         />
-        <Link href={`/entry/${slug}`} passHref>
+        <Link href={`/detail/${slug}`} passHref>
           <Button>Read more</Button>
         </Link>
       </div>
     </div>
-  )
+  );
 }
